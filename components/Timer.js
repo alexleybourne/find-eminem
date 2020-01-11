@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-export default function Timer() {
+export default function Timer(props) {
 
   const [timerDate, setTimerDate] = useState()
   const [timerMS, setTimerMS] = useState(0)
@@ -12,22 +12,26 @@ export default function Timer() {
     return `${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}:${time.getMilliseconds().toString().padStart(3, '0')}` 
   }
 
+  const stopTimer = () => {
+    console.log('TIMER STOP')
+    if (updater) { setTimerMS(new Date().getTime() - timerDate.getTime()) }
+  }
+
   // Stores the timer as a date
   // This will be used to calculate how long the timer has been run for
   const startTimer = () => {
+    console.log('TIMER START')
+    resetTimer()
     setTimerDate(new Date(new Date().getTime() - timerMS))
   }
 
-  const stopTimer = () => {
-    setTimerMS(new Date().getTime() - timerDate.getTime())
-  }
-
   const resetTimer = () => {
+        console.log('RESET TIMER')
     if(updater) {
-      setTimerDate(new Date())
+        setTimerDate(new Date())
     } else {
-      setTimerMS(0)
-      timerRef.current.textContent = timeAsString(new Date(0))
+        setTimerMS(0)
+        timerRef.current.textContent = timeAsString(new Date(0))
     }
   }
 
@@ -46,19 +50,12 @@ export default function Timer() {
     setUpdater()
   }, [timerMS])
 
-  const handleTimer = () => {
-    if(updater) {
-      stopTimer()
-    } else {
-      startTimer()
-    }
-  }
+  useEffect(() => {
+    props.running ? startTimer() && resetTimer() : stopTimer();
+  }, [props.running]);
 
   return (
     <div className="timer">
-      <button onClick={handleTimer} >{updater ? 'Stop Timer' : 'Start Timer'}</button>
-      <button onClick={resetTimer} >Reset Timer</button>
-      <br />
       <span ref={timerRef} ></span>
     </div>
   )

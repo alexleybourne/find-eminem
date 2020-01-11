@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Footer from 'components/Footer'
+import Timer from 'components/Timer'
 
 const Eminems = () => {
 
   const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
+
+  const [timerOn, setTimerOn] = useState(false);
 
   const [colour, setColour] = useState('Blue');
   const [bgRotation, setBgRotation] = useState(0);
@@ -44,6 +47,7 @@ const Eminems = () => {
   }
 
   const setup = () => {
+    setTimerOn(true)
     startAnimation()
     setFound(false)
     setFailed(false)
@@ -59,6 +63,7 @@ const Eminems = () => {
   }
 
   const foundEminem = async () => {
+    setTimerOn(false)
     console.log('FOUND EMINEM')
     setFound(true);
     setLocatorClasses('locator')
@@ -88,6 +93,7 @@ const Eminems = () => {
         </div>
       </div>
         <Footer>
+          <Timer running={timerOn}/>
           <button onClick={setup}>NEW</button>
           <button onClick={gaveUp}>Give Up</button>
         </Footer>
