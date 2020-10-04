@@ -72,6 +72,7 @@ const Eminems = () => {
   }
 
   const gaveUp = async () => {
+    setTimerOn(false)
     setFound(true);
     setFailed(true)
     setLocatorClasses('locator')
@@ -93,7 +94,7 @@ const Eminems = () => {
         </div>
       </div>
         <Footer>
-          <Timer running={false}/>
+          <Timer running={timerOn}/>
           <button onClick={setup}>NEW</button>
           <button onClick={gaveUp}>Give Up</button>
         </Footer>
