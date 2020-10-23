@@ -1,7 +1,13 @@
+
 export default function Photo() {
     return (
-      <div>
-        <img src="/assets/Background.jpg" />
-      </div>
+      <>
+        <img className="background" src="/assets/Background.jpg" />
+        <style jsx>{`
+            .background {
+                width: px;
+            }
+        `}</style>
+      </>
     )
 }
