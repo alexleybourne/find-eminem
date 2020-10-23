@@ -5,7 +5,7 @@ export default function Photo() {
         <img className="background" src="/assets/Background.jpg" />
         <style jsx>{`
             .background {
-                width: px;
+              width: 50vw;
             }
         `}</style>
       </>
