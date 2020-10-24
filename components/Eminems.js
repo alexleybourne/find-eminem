@@ -6,7 +6,7 @@ const Eminems = () => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
 
-  const [colour, setColour] = useState('blue');
+  const [colour, setColour] = useState('Blue');
   const [bgRotation, setBgRotation] = useState(0);
   const [eminemRotation, setEminemRotation] = useState(0);
   const [eminemX, setEminemX] = useState('0');
