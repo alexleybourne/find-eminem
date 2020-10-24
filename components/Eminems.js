@@ -40,7 +40,7 @@ const Eminems = () => {
   const setup = () => {
     setFound(false)
     setFailed(false)
-    const colours = ['Green', 'Red', 'Orange', 'Blue']
+    const colours = ['Green', 'Red', 'Orange', 'Blue', 'Yellow', 'Brown']
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
     setBgRotation(bgRotation === 0 ? 180 : 0)
