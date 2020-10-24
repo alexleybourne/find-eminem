@@ -11,6 +11,8 @@ const Eminems = () => {
   const [eminemRotation, setEminemRotation] = useState(0);
   const [eminemX, setEminemX] = useState('0');
   const [eminemY, setEminemY] = useState('0');
+  const [negativeX, setNegativeX] = useState(false);
+  const [negativeY, setNegativeY] = useState(false);
   const [locatorClasses, setLocatorClasses] = useState('hidden');
   const [found, setFound] = useState(false)
   const [failed, setFailed] = useState(false)
@@ -20,6 +22,21 @@ const Eminems = () => {
     return number
   }
 
+  const negOrPos = (y) => {
+    if ( y === 'Y') {
+      let positive = !negativeY
+      setNegativeY(positive)
+      return positive ? '-' : ''
+    } else {
+      let positive = !negativeX
+      setNegativeX(positive)
+      return positive ? '' : '-'
+    }
+  }
+
+  const maxX = 400
+  const maxY = 200
+
   const setup = () => {
     setFound(false)
     setFailed(false)
@@ -27,9 +44,9 @@ const Eminems = () => {
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
     setBgRotation(bgRotation === 0 ? 180 : 0)
-    setEminemRotation(`${randomValue < 2 ? '-' : ''}${random(15) * 10}`)
-    setEminemX(`${randomValue > 2 ? '-' : ''}${random(400)}`)
-    setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
+    setEminemRotation(`${negOrPos('X')}${random(20) * 10}`)
+    setEminemX(`${negOrPos('X')}${random(maxX)}`)
+    setEminemY(`${negOrPos('Y')}${random(maxY)}`)
     setColour(randomColour)
     setLocatorClasses('hidden')
   }
