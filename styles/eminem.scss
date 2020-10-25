@@ -48,6 +48,20 @@
         border-radius:10px;
     }
 
+    .no-rotation {
+        transition-duration: 1s;
+        transform: rotate(0deg) !important;
+    }
+
+    .animate {
+        animation: pulse 1.5s ease-in-out both;
+    }
+
+    @keyframes pulse {
+        to {
+            transform: scale(2) translateY(-40px);
+        }
+    }
     
 
 }

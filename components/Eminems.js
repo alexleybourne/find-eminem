@@ -20,6 +20,7 @@ const Eminems = () => {
   }
 
   const setup = () => {
+    setFound(false)
     const colours = ['Green', 'Red', 'Orange', 'Blue']
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
@@ -45,13 +46,14 @@ const Eminems = () => {
     <div className="main-image">
       <div className="main-image-wrapper">
         <div className={`eminem-wrapper ${found ? 'animate' : ''}`} onClick={foundEminem}>
-          <img className="eminem" src="assets/Eminem.png" alt="Eminem"/>
+          <img className={`eminem ${found ? 'no-rotation' : ''}`} src="assets/Eminem.png" alt="Eminem"/>
           <img className="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
           <div className={locatorClasses}></div>
         </div>
         <img className="background" src="/assets/Background.jpg" alt="M&M's"/>
       </div>
       <button onClick={setup}>NEW</button>
+      <button onClick={foundEminem}>Give Up</button>
       <style jsx>{`
 
         .hidden {
