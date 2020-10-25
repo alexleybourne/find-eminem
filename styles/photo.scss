@@ -12,6 +12,7 @@
     }
 
     .main-image-wrapper {
+        position: relative;
         width: 1000px;
         overflow: hidden;
         display: flex;
@@ -19,7 +20,7 @@
         justify-content: center;
     }
 
-    #eminem-wrapper {
+    .eminem-wrapper {
         z-index: 2;
         position: absolute;
         width: 52px;
@@ -28,14 +29,14 @@
         align-items: center;
         justify-content: center;
 
-        #eminem {
+        .eminem {
             opacity: 0.6;
             position: absolute;
             width: auto;
             height: 70%;
         }
 
-        #eminem-bg {
+        .eminem-bg {
             width: auto;
             height: 100%;
         }

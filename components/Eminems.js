@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Eminems = () => {
 
@@ -7,24 +7,12 @@ const Eminems = () => {
   const [eminemRotation, setEminemRotation] = useState(0);
   const [eminemX, setEminemX] = useState('0');
   const [eminemY, setEminemY] = useState('0');
+  const [locatorClasses, setLocatorClasses] = useState('hidden');
 
   const random = (val) => {
     const number = ~~(Math.random() * val)
     return number
   }
-
-  useEffect(() => {
-    const colours = ['Green', 'Red', 'Orange', 'Blue']
-    const randomValue = random(colours.length)
-    const randomColour = colours[randomValue]
-    setBgRotation(bgRotation === 0 ? 180 : 0)
-    setEminemRotation(`${randomValue < 2 ? '-' : ''}${random(15) * 10}`)
-    setEminemX(`${randomValue > 2 ? '-' : ''}${random(450)}`)
-    setEminemY(`${randomValue < 2 ? '-' : ''}${random(250)}`)
-    console.log(eminemRotation);
-    console.log(randomColour)
-    setColour(randomColour)
-  }, [])
 
   const setup = () => {
     const colours = ['Green', 'Red', 'Orange', 'Blue']
@@ -32,35 +20,59 @@ const Eminems = () => {
     const randomColour = colours[randomValue]
     setBgRotation(bgRotation === 0 ? 180 : 0)
     setEminemRotation(`${randomValue < 2 ? '-' : ''}${random(15) * 10}`)
-    setEminemX(`${randomValue > 2 ? '-' : ''}${random(450)}`)
-    setEminemY(`${randomValue < 2 ? '-' : ''}${random(250)}`)
-    console.log(eminemRotation);
-    console.log(randomColour)
+    setEminemX(`${randomValue > 2 ? '-' : ''}${random(400)}`)
+    setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
     setColour(randomColour)
+    setLocatorClasses('hidden')
   }
 
-  
   const found = () => {
     console.log('FOUND EMINEM')
+    setLocatorClasses('locator')
+    setLocatorClasses('locator found')
   }
+
+  window.addEventListener("load", setup);
 
   return (
     <div className="main-image">
       <div className="main-image-wrapper">
-        <div id="eminem-wrapper" onClick={found}>
-          <img id="eminem" src="assets/Eminem.png" alt="Eminem"/>
-          <img id="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
+        <div className="eminem-wrapper" onClick={found}>
+          <img className="eminem" src="assets/Eminem.png" alt="Eminem"/>
+          <img className="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
+          <div className={locatorClasses}></div>
         </div>
         <img className="background" src="/assets/Background.jpg" alt="M&M's"/>
       </div>
       <button onClick={setup}>NEW</button>
       <style jsx>{`
 
-        #eminem-wrapper {
+        .hidden {
+          display: none;
+          opacity: 0;
+        }
+
+        .locator {
+          position: absolute;
+          opacity: 0.8;
+          z-index: -1;
+          background: white;
+          height: 0;
+          width: 0;
+          border-radius: 100%;
+          transition-duration: 1s;
+        }
+
+        .found {
+          height: 200vw;
+          width: 200vw;
+        }
+
+        .eminem-wrapper {
           transform: translate(${eminemX}px, ${eminemY}px);
         }
 
-        #eminem {
+        .eminem {
           transform: rotate(${eminemRotation}deg);
         }
 
