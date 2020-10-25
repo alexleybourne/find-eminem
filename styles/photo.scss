@@ -2,8 +2,13 @@
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    button {
+        margin-top: 30px;
+    }
 
     .main-image-wrapper {
         width: 90%;
@@ -14,9 +19,10 @@
     }
 
     #eminem-wrapper {
+        z-index: 2;
         position: absolute;
-        width: 64px;
-        height: 64px;
+        width: 4.4vw;
+        height: 4.4vw;
         display: flex;
         align-items: center;
         justify-content: center;
