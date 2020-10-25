@@ -13,6 +13,26 @@
         justify-content: center;
     }
 
+    .eminem-wrapper {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .eminem {
+            position: absolute;
+            width: auto;
+            height: 40px;
+        }
+
+        .eminem-bg {
+            width: auto;
+            height: 60px;
+        }
+    }
+
     .background {
         width: 90%;
         border-radius:10px;

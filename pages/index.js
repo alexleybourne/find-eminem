@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Photo from 'components/Photo'
+import Eminems from 'components/Eminems'
 import ScoreBoard from 'components/ScoreBoard'
 import Timer from 'components/Timer'
 
@@ -9,7 +9,7 @@ export default function Home() {
       <h1>Find Eminem</h1>
       {/* <Timer/>
       <ScoreBoard/> */}
-      <Photo/>
+      <Eminems/>
     </div>
   )
 }
