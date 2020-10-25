@@ -13,23 +13,24 @@
         justify-content: center;
     }
 
-    .eminem-wrapper {
+    #eminem-wrapper {
         position: absolute;
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
 
-        .eminem {
+        #eminem {
+            opacity: 0.6;
             position: absolute;
             width: auto;
-            height: 40px;
+            height: 70%;
         }
 
-        .eminem-bg {
+        #eminem-bg {
             width: auto;
-            height: 60px;
+            height: 100%;
         }
     }
 
