@@ -1,43 +1,51 @@
 import React, { useState } from 'react';
 import fire from 'config/fire-config'
 
-const CreateTask = () => {
-  const [name, setName] = useState('');
-  const [score, setScore] = useState('20 seconds');
-  const [date, setDate] = useState(new Date());
-  const [notification, setNotification] = useState('');
+const ScoreBoard = () => {
+    const [name, setName] = useState('');
+    const [score, setScore] = useState('');
+    const [date, setDate] = useState('');
+    const [notification, setNotification] = useState('');
 
-  const handleSubmit = async(event) => {
+    const handleSubmit = (event) => {
+        const time = new Date();
+        setDate(time);
+        setScore('69 seconds');
 
-    const time = new Date();
-    setDate(time);
-    setScore('20 seconds');
+        console.log(date)
+        console.log(score)
 
-    event.preventDefault();
-    console.log({
-      "Name": name,
-      "Score": score,
-      "Date": date,
-    });
+        event.preventDefault();
 
-    fire.firestore()
-    .collection('Scores')
-    .add({
-        "Name": name,
-        "Score": score,
-        "Date": date
-    });
+        sendData();
+    }
+
+    const sendData = () => {
+
+        console.log({
+            "Name": name,
+            "Score": score,
+            "Date": date,
+        });
+
+        fire.firestore()
+        .collection('Scores')
+        .add({
+            "Name": name,
+            "Score": score,
+            "Date": date
+        });
 
 
-    setName('');
-    setScore('');
-    setDate('');
+        setName('');
+        setScore('');
+        setDate('');
 
-    setNotification('Highscore Saved');
-    setTimeout(() => {
-      setNotification('')
-    }, 2000)
-  }
+        setNotification('Highscore Saved');
+        setTimeout(() => {
+        setNotification('')
+        }, 2000)
+    }
 
   return (
     <div>
@@ -52,9 +60,9 @@ const CreateTask = () => {
             onChange={({target}) => setName(target.value)}
            />
         </div>
-        <button type="submit">Save</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   )
 }
-export default CreateTask;
+export default ScoreBoard;
