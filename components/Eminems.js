@@ -13,6 +13,7 @@ const Eminems = () => {
   const [eminemY, setEminemY] = useState('0');
   const [locatorClasses, setLocatorClasses] = useState('hidden');
   const [found, setFound] = useState(false)
+  const [failed, setFailed] = useState(false)
 
   const random = (val) => {
     const number = ~~(Math.random() * val)
@@ -21,6 +22,7 @@ const Eminems = () => {
 
   const setup = () => {
     setFound(false)
+    setFailed(false)
     const colours = ['Green', 'Red', 'Orange', 'Blue']
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
@@ -40,11 +42,20 @@ const Eminems = () => {
     setLocatorClasses('locator found')
   }
 
+  const gaveUp = async () => {
+    setFound(true);
+    setFailed(true)
+    setLocatorClasses('locator')
+    await sleep(10)
+    setLocatorClasses('locator found')
+  }
+
   window.addEventListener("load", setup);
 
   return (
     <div className="main-image">
       <div className="main-image-wrapper">
+        <p className={`message ${found ? 'message-show' : 'message-hide'}`}>{`${!failed ? 'You found Eminem!' : 'Better luck next time'}`}</p>
         <div className={`eminem-wrapper ${found ? 'animate' : ''}`} onClick={foundEminem}>
           <img className={`eminem ${found ? 'no-rotation' : ''}`} src="assets/Eminem.png" alt="Eminem"/>
           <img className="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
@@ -53,7 +64,7 @@ const Eminems = () => {
         <img className="background" src="/assets/Background.jpg" alt="M&M's"/>
       </div>
       <button onClick={setup}>NEW</button>
-      <button onClick={foundEminem}>Give Up</button>
+      <button onClick={gaveUp}>Give Up</button>
       <style jsx>{`
 
         .hidden {

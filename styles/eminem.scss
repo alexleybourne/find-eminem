@@ -42,6 +42,24 @@
         }
     }
 
+    .message {
+        position: absolute;
+        z-index: 3;
+        font-size: 40px;
+        font-weight: bold;
+        transform: none;
+    }
+
+    .message-show {
+        transition-delay: 1s;
+        transition-duration: 1s;
+    }
+
+    .message-hide {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
     .background {
         width: 900px;
         height: 500px;
