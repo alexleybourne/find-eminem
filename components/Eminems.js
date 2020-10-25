@@ -17,7 +17,7 @@ const Eminems = () => {
     const colours = ['Green', 'Red', 'Orange', 'Blue']
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
-    setBgRotation(randomValue > 2 ? 180 : 0)
+    setBgRotation(bgRotation === 0 ? 180 : 0)
     setEminemRotation(random(15) * 10)
     setEminemX(`${randomValue > 2 ? '-' : ''}${random(300)}`)
     setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
@@ -30,7 +30,7 @@ const Eminems = () => {
     const colours = ['Green', 'Red', 'Orange', 'Blue']
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
-    setBgRotation(randomValue > 2 ? 180 : 0)
+    setBgRotation(bgRotation === 0 ? 180 : 0)
     setEminemRotation(random(15) * 10)
     setEminemX(`${randomValue > 2 ? '-' : ''}${random(300)}`)
     setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
