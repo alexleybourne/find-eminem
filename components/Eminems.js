@@ -18,9 +18,9 @@ const Eminems = () => {
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
     setBgRotation(bgRotation === 0 ? 180 : 0)
-    setEminemRotation(random(15) * 10)
-    setEminemX(`${randomValue > 2 ? '-' : ''}${random(300)}`)
-    setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
+    setEminemRotation(`${randomValue < 2 ? '-' : ''}${random(15) * 10}`)
+    setEminemX(`${randomValue > 2 ? '-' : ''}${random(450)}`)
+    setEminemY(`${randomValue < 2 ? '-' : ''}${random(250)}`)
     console.log(eminemRotation);
     console.log(randomColour)
     setColour(randomColour)
@@ -31,15 +31,14 @@ const Eminems = () => {
     const randomValue = random(colours.length)
     const randomColour = colours[randomValue]
     setBgRotation(bgRotation === 0 ? 180 : 0)
-    setEminemRotation(random(15) * 10)
-    setEminemX(`${randomValue > 2 ? '-' : ''}${random(300)}`)
-    setEminemY(`${randomValue < 2 ? '-' : ''}${random(200)}`)
+    setEminemRotation(`${randomValue < 2 ? '-' : ''}${random(15) * 10}`)
+    setEminemX(`${randomValue > 2 ? '-' : ''}${random(450)}`)
+    setEminemY(`${randomValue < 2 ? '-' : ''}${random(250)}`)
     console.log(eminemRotation);
     console.log(randomColour)
     setColour(randomColour)
   }
 
-  
   
   const found = () => {
     console.log('FOUND EMINEM')
