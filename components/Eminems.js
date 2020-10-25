@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 
 const Eminems = () => {
 
+  const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
   const [colour, setColour] = useState('blue');
   const [bgRotation, setBgRotation] = useState(0);
   const [eminemRotation, setEminemRotation] = useState(0);
   const [eminemX, setEminemX] = useState('0');
   const [eminemY, setEminemY] = useState('0');
   const [locatorClasses, setLocatorClasses] = useState('hidden');
+  const [found, setFound] = useState(false)
 
   const random = (val) => {
     const number = ~~(Math.random() * val)
@@ -26,9 +31,11 @@ const Eminems = () => {
     setLocatorClasses('hidden')
   }
 
-  const found = () => {
+  const foundEminem = async () => {
     console.log('FOUND EMINEM')
+    setFound(true);
     setLocatorClasses('locator')
+    await sleep(10)
     setLocatorClasses('locator found')
   }
 
@@ -37,7 +44,7 @@ const Eminems = () => {
   return (
     <div className="main-image">
       <div className="main-image-wrapper">
-        <div className="eminem-wrapper" onClick={found}>
+        <div className={`eminem-wrapper ${found ? 'animate' : ''}`} onClick={foundEminem}>
           <img className="eminem" src="assets/Eminem.png" alt="Eminem"/>
           <img className="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
           <div className={locatorClasses}></div>
@@ -79,6 +86,7 @@ const Eminems = () => {
         .background {
           transform: rotate(${bgRotation}deg);
         }
+
       `}</style>
     </div>
   )

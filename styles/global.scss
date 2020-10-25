@@ -8,3 +8,17 @@ h1 {
     position: absolute;
     text-align: center;
 }
+
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    outline: none;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition-duration: 0.2s;
+
+    &:active {
+        transform: scale(0.9);
+    }
+}

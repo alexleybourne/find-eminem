@@ -1,5 +1,5 @@
 import 'styles/global.scss'
-import 'styles/photo.scss'
+import 'styles/eminem.scss'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
