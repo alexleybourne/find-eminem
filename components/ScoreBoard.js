@@ -1,51 +1,54 @@
 import React, { useState } from 'react';
 import fire from 'config/fire-config'
 
-const ScoreBoard = () => {
-    const [name, setName] = useState('');
-    const [score, setScore] = useState('');
-    const [date, setDate] = useState('');
-    const [notification, setNotification] = useState('');
+const ScoreBoard = (props) => {
+  const [name, setName] = useState('');
+  const [score, setScore] = useState('');
+  const [date, setDate] = useState('');
+  const [notification, setNotification] = useState('');
 
-    const handleSubmit = (event) => {
-        const time = new Date();
-        setDate(time);
-        setScore('69 seconds');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    sendData();
+  }
 
-        console.log(date)
-        console.log(score)
+  const setData = () => {
+    const time = new Date();
+    setDate(time);
+    setScore(props.score)
 
-        event.preventDefault();
+    console.log(time)
+    console.log(date)
+    console.log(props.score)
+    console.log(score)
+  }
 
-        sendData();
-    }
+  const sendData = () => {
 
-    const sendData = () => {
+    console.log({
+      "Name": name,
+      "Score": score,
+      "Date": date,
+    });
 
-        console.log({
-            "Name": name,
-            "Score": score,
-            "Date": date,
-        });
-
-        fire.firestore()
-        .collection('Scores')
-        .add({
-            "Name": name,
-            "Score": score,
-            "Date": date
-        });
+    fire.firestore()
+    .collection('Scores')
+    .add({
+      "Name": name,
+      "Score": score,
+      "Date": date
+    });
 
 
-        setName('');
-        setScore('');
-        setDate('');
+    setName('');
+    setScore('');
+    setDate('');
 
-        setNotification('Highscore Saved');
-        setTimeout(() => {
-        setNotification('')
-        }, 2000)
-    }
+    setNotification('Highscore Saved');
+    setTimeout(() => {
+    setNotification('')
+    }, 2000)
+  }
 
   return (
     <div>
@@ -57,7 +60,7 @@ const ScoreBoard = () => {
           <input
             type="text"
             value={name} 
-            onChange={({target}) => setName(target.value)}
+            onChange={({target}) => setName(target.value) + setData()}
            />
         </div>
         <button type="submit">Submit</button>

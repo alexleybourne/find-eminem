@@ -9,19 +9,17 @@ const Timer = () => {
     
     const startTimer = () => {
         loop = setInterval(() => {
-            timer()
+            if (milliseconds !== 59) {
+                setMilliseconds( milliseconds ++ )
+            } else if (seconds !== 59 && milliseconds === 59) {
+                setMilliseconds(0)
+                setSeconds(seconds ++)
+            } else if (minutes !== 11 && seconds === 59 ) {
+                setMinutes(0)
+                setMinutes(minutes ++)
+            }
         }, 100);
     }
-
-    const timer = () => {
-        milliseconds !== 59 ? setMilliseconds( milliseconds ++ ) : newSecond();
-    }
-
-    const newSecond = () => {
-        setMilliseconds(0)
-        setSeconds(seconds ++)
-    }
-    
 
     return (
         <>
