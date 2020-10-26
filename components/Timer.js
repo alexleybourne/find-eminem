@@ -1,33 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react'
 
-const Timer = () => {
-    let [minutes, setMinutes] = useState(0);
-    let [seconds, setSeconds] = useState(0);
-    let [milliseconds, setMilliseconds] = useState(0);
+export default function Timer() {
 
-    let loop = '';
-    
-    const startTimer = () => {
-        loop = setInterval(() => {
-            if (milliseconds !== 59) {
-                setMilliseconds( milliseconds ++ )
-            } else if (seconds !== 59 && milliseconds === 59) {
-                setMilliseconds(0)
-                setSeconds(seconds ++)
-            } else if (minutes !== 11 && seconds === 59 ) {
-                setMinutes(0)
-                setMinutes(minutes ++)
-            }
-        }, 100);
+  const [timerDate, setTimerDate] = useState()
+  const [timerMS, setTimerMS] = useState(0)
+  const [updater, setUpdater] = useState()
+
+  const timerRef = useRef()
+
+  const timeAsString = (time) => {
+    return `${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}:${time.getMilliseconds().toString().padStart(3, '0')}` 
+  }
+
+  // Stores the timer as a date
+  // This will be used to calculate how long the timer has been run for
+  const startTimer = () => {
+    setTimerDate(new Date(new Date().getTime() - timerMS))
+  }
+
+  const stopTimer = () => {
+    setTimerMS(new Date().getTime() - timerDate.getTime())
+  }
+
+  const resetTimer = () => {
+    if(updater) {
+      setTimerDate(new Date())
+    } else {
+      setTimerMS(0)
+      timerRef.current.textContent = timeAsString(new Date(0))
     }
+  }
 
-    return (
-        <>
-            <button onClick={() => startTimer()}>TIMER ON</button>
-            <button onClick={() => clearInterval(loop)}>TIMER OFF</button>
-            <p>{minutes}:{seconds}:{milliseconds}</p>
-        </>
-    )
+  useEffect(() => {
+    if(!timerDate) { return }
+  
+    if(updater) {clearInterval(updater)}
+    const updaterID = setInterval(() => {
+      timerRef.current.textContent = timeAsString(new Date(new Date().getTime() - timerDate.getTime()))
+    }, 10)
+    setUpdater(updaterID)
+  }, [timerDate])
+
+  useEffect(() => {
+    clearInterval(updater)
+    setUpdater()
+  }, [timerMS])
+
+  const handleTimer = () => {
+    if(updater) {
+      stopTimer()
+    } else {
+      startTimer()
+    }
+  }
+
+  return (
+    <div className="Timer">
+      <button onClick={handleTimer} >{updater ? 'Stop Timer' : 'Start Timer'}</button>
+      <button onClick={resetTimer} >Reset Timer</button>
+      <br />
+      <span ref={timerRef} ></span>
+    </div>
+  )
 }
-
-export default Timer

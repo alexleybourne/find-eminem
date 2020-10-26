@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="shortcut icon" href="favicon.ico"/>
       </Head>
       <h1>Find Eminem</h1>
-      {/* <Timer/> */}
+      <Timer/>
       <ScoreBoard score='04:23'/>
       <DynamicComponentWithNoSSR/>
     </div>
