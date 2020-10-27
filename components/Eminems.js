@@ -84,6 +84,12 @@ const Eminems = () => {
       <button onClick={gaveUp}>Give Up</button>
       <style jsx>{`
 
+        body {
+          background-image: url("/assets/LoopingBackground.jpg");
+          background-repeat: repeat;
+          background-size: 1000px;
+        }
+
         .hidden {
           display: none;
           opacity: 0;

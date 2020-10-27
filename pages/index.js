@@ -10,6 +10,7 @@ const DynamicComponentWithNoSSR = dynamic(
 )
 
 export default function Home() {
+
   return (
     <div>
       <Head>
