@@ -1,8 +1,3 @@
-body {
-    background-image: url("/assets/LoopingBackground.jpg");
-    background-repeat: repeat;
-    background-size: 1000px;
-}
 
 .main-image {
     transform: scale(1.1);
@@ -19,7 +14,8 @@ body {
 
     .main-image-wrapper {
         position: relative;
-        width: 1000px;
+        width: 100vw;
+        height: 100vh;
         overflow: hidden;
         display: flex;
         align-items: center;

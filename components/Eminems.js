@@ -78,17 +78,10 @@ const Eminems = () => {
           <img className="eminem-bg" src={`assets/${colour}.png`} alt="Eminem M&M" />
           <div className={locatorClasses}></div>
         </div>
-        <img className="background" src="/assets/Background.jpg" alt="M&M's"/>
       </div>
       <button onClick={setup}>NEW</button>
       <button onClick={gaveUp}>Give Up</button>
       <style jsx>{`
-
-        body {
-          background-image: url("/assets/LoopingBackground.jpg");
-          background-repeat: repeat;
-          background-size: 1000px;
-        }
 
         .hidden {
           display: none;
@@ -117,10 +110,6 @@ const Eminems = () => {
 
         .eminem {
           transform: rotate(${eminemRotation}deg);
-        }
-
-        .background {
-          transform: rotate(${bgRotation}deg);
         }
 
       `}</style>
