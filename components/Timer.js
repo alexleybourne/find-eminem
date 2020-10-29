@@ -55,7 +55,7 @@ export default function Timer() {
   }
 
   return (
-    <div className="Timer">
+    <div className="timer">
       <button onClick={handleTimer} >{updater ? 'Stop Timer' : 'Start Timer'}</button>
       <button onClick={resetTimer} >Reset Timer</button>
       <br />

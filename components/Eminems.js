@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from 'components/Footer'
 
 const Eminems = () => {
 
@@ -79,8 +80,10 @@ const Eminems = () => {
           <div className={locatorClasses}></div>
         </div>
       </div>
-      <button onClick={setup}>NEW</button>
-      <button onClick={gaveUp}>Give Up</button>
+        <Footer>
+          <button onClick={setup}>NEW</button>
+          <button onClick={gaveUp}>Give Up</button>
+        </Footer>
       <style jsx>{`
 
         .hidden {
