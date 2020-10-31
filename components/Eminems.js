@@ -15,6 +15,7 @@ const Eminems = () => {
   const [negativeX, setNegativeX] = useState(false);
   const [negativeY, setNegativeY] = useState(false);
   const [locatorClasses, setLocatorClasses] = useState('hidden');
+  const [wipeAnimation, setWipeAnimation] = useState('animation animation-shown');
   const [found, setFound] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -35,10 +36,15 @@ const Eminems = () => {
     }
   }
 
-  const maxX = 400
-  const maxY = 200
+  const maxX = (window.innerWidth / 2) - 20
+  const maxY = (window.innerHeight / 2) - 100 // For Footer and upper buttons / text
+
+  const startAnimation = () => {
+    setWipeAnimation('animation animation-hidden')
+  }
 
   const setup = () => {
+    startAnimation()
     setFound(false)
     setFailed(false)
     const colours = ['Green', 'Red', 'Orange', 'Blue', 'Yellow', 'Brown']
@@ -73,6 +79,7 @@ const Eminems = () => {
   return (
     <div className="main-image">
       <div className="main-image-wrapper">
+        <div className={wipeAnimation}></div>
         <p className={`message ${found ? 'message-show' : 'message-hide'}`}>{`${!failed ? 'You found Eminem!' : 'Better luck next time'}`}</p>
         <div className={`eminem-wrapper ${found ? 'animate' : ''}`} onClick={foundEminem}>
           <img className={`eminem ${found ? 'no-rotation' : ''}`} src="assets/Eminem.png" alt="Eminem"/>
@@ -105,6 +112,26 @@ const Eminems = () => {
         .found {
           height: 200vw;
           width: 200vw;
+        }
+
+        .animation-hidden {
+          opacity: 1;
+          transform: translateY(-100vh) !important;
+        }
+
+        .animation-shown {
+          opacity: 1;
+          transform: translateY(0) !important;
+        }
+
+        .animation {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          z-index: 10;
+          background: white;
+          transform: translateY(100vh);
+          transition-duration: 1s;
         }
 
         .eminem-wrapper {
