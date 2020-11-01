@@ -21,7 +21,6 @@ export default function Timer(props) {
   // This will be used to calculate how long the timer has been run for
   const startTimer = () => {
     console.log('TIMER START')
-    resetTimer()
     setTimerDate(new Date(new Date().getTime() - timerMS))
   }
 
