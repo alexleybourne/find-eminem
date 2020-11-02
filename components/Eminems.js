@@ -93,7 +93,7 @@ const Eminems = () => {
         </div>
       </div>
         <Footer>
-          <Timer running={timerOn}/>
+          <Timer running={false}/>
           <button onClick={setup}>NEW</button>
           <button onClick={gaveUp}>Give Up</button>
         </Footer>

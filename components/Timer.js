@@ -9,7 +9,7 @@ export default function Timer(props) {
   const timerRef = useRef()
 
   const timeAsString = (time) => {
-    return `${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}:${time.getMilliseconds().toString().padStart(3, '0')}` 
+    return `${time.getMinutes().toString().padStart(2, '0')}:${time.getSeconds().toString().padStart(2, '0')}:${time.getMilliseconds().toString().slice(1).padStart(2, '0')}` 
   }
 
   const stopTimer = () => {
@@ -17,21 +17,25 @@ export default function Timer(props) {
     if (updater) { setTimerMS(new Date().getTime() - timerDate.getTime()) }
   }
 
+  const resetTimer = () => {
+    console.log('RESET TIMER')
+    // If the timer is already running the DATE should be changed as that's what it's based off
+    if(updater) {
+        setTimerDate(new Date())
+    // If it's paused the MS should be updated to 0 because that's what it's based off
+    } else {
+        setTimerMS(0)
+        // Update the Span to show the time has been reset to 0
+        timerRef.current.textContent = timeAsString(new Date(0))
+    }
+  }
+
   // Stores the timer as a date
   // This will be used to calculate how long the timer has been run for
   const startTimer = () => {
+    resetTimer()
     console.log('TIMER START')
     setTimerDate(new Date(new Date().getTime() - timerMS))
-  }
-
-  const resetTimer = () => {
-        console.log('RESET TIMER')
-    if(updater) {
-        setTimerDate(new Date())
-    } else {
-        setTimerMS(0)
-        timerRef.current.textContent = timeAsString(new Date(0))
-    }
   }
 
   useEffect(() => {
@@ -50,7 +54,7 @@ export default function Timer(props) {
   }, [timerMS])
 
   useEffect(() => {
-    props.running ? startTimer() && resetTimer() : stopTimer();
+    props.running ? startTimer() : stopTimer();
   }, [props.running]);
 
   return (
