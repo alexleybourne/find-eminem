@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import fire from 'config/fire-config'
 
 const ScoreBoard = (props) => {
   const [name, setName] = useState('');
